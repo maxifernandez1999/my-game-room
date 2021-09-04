@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { QuienSoyComponent } from './quien-soy/quien-soy.component';
 import { environment } from 'src/environments/environment';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { ErrorComponent } from './page/error/error.component';
+import { MenuPrincipalComponent } from './page/menu-principal/menu-principal.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    QuienSoyComponent
+    QuienSoyComponent,
+    ErrorComponent,
+    MenuPrincipalComponent
   ],
   imports: [
     BrowserModule,

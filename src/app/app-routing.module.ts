@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { ErrorComponent } from './page/error/error.component';
 import { QuienSoyComponent } from './quien-soy/quien-soy.component';
 
 const routes: Routes = [
@@ -19,8 +20,12 @@ const routes: Routes = [
   },
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'login'
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    component: ErrorComponent
   }
   
 ];
