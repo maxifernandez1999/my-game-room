@@ -6,13 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { QuienSoyComponent } from './quien-soy/quien-soy.component';
 import { environment } from 'src/environments/environment';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { ErrorComponent } from './page/error/error.component';
-import { MenuPrincipalComponent } from './page/menu-principal/menu-principal.component';
+import { LoginComponent } from './page/login/login.component';
+import { HomeComponent } from './page/home/home.component';
+import { QuienSoyComponent } from './page/quien-soy/quien-soy.component';
+import { ErrorComponent } from './components/error/error.component';
+import { MenuPrincipalComponent } from './components/menu-principal/menu-principal.component';
 
 
 @NgModule({

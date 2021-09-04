@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { ErrorComponent } from './page/error/error.component';
-import { QuienSoyComponent } from './quien-soy/quien-soy.component';
+import { ErrorComponent } from './components/error/error.component';
+import { HomeComponent } from './page/home/home.component';
+import { LoginComponent } from './page/login/login.component';
+import { QuienSoyComponent } from './page/quien-soy/quien-soy.component';
+
 
 const routes: Routes = [
   {
