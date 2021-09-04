@@ -28,7 +28,7 @@ import { MenuPrincipalComponent } from './page/menu-principal/menu-principal.com
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     SweetAlert2Module.forRoot()
   ],
