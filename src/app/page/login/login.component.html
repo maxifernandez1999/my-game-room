@@ -1,4 +1,10 @@
+
 <div class="principal">
+	<div #asMessage class="container-message">
+		<h1>Ups...</h1> 
+		<h3>No pudimos encontrar su usuario. Intente de nuevo o registrese!</h3>
+	</div>
+	
 	<div #asContainer class="container" id="container">
 		<div class="form-container sign-up-container">
 			<form action="#">
@@ -9,10 +15,10 @@
 					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 				</div> 
 				<span>o usa tu mail para registrarse</span>
-				<input type="text" placeholder="Nombre" />
-				<input type="email" placeholder="Email" />
-				<input type="password" placeholder="Contraseña" />
-				<button>Sign Up</button>
+				<input [(ngModel)]="nameSignUp" name="name" type="text" placeholder="Nombre" />
+				<input [(ngModel)]="emailSignUp" name="email" type="email" placeholder="Email" />
+				<input [(ngModel)]="passwordSignUp" name="password" type="password" placeholder="Contraseña" />
+				<button (click)="signUp()">Sign Up</button>
 			</form>
 		</div>
 		<div class="form-container sign-in-container">
@@ -24,10 +30,14 @@
 					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 				</div>
 				<span>o use su cuenta</span>
-				<input type="email" placeholder="Email" />
-				<input type="password" placeholder="Contraseña" />
+				<input [(ngModel)]="emailSignIn" name="name" type="email" placeholder="Email" />
+				<input [(ngModel)]=passwordSignIn type="password" placeholder="Contraseña" name="password" />
+				<div #asSpinner class="spinner-border spinner-border-sm text-danger" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
 				<a href="#">Olvidaste la contraseña?</a>
-				<button>Sign In</button>
+				
+				<button (click)="signIn()">Sign In</button>
 			</form>
 		</div>
 		<div class="overlay-container">
@@ -35,14 +45,20 @@
 				<div class="overlay-panel overlay-left">
 					<h1>Bienvenido!</h1>
 					<p>Inicie sesión con su informacion personal</p>
-					<button class="ghost" id="signIn" (click)="signIn()">Sign In</button>
+					<button class="ghost" id="signIn" (click)="signInButton()">Sign In</button>
 				</div>
 				<div class="overlay-panel overlay-right">
 					<h1>Hola, amigo!</h1>
 					<p>Primer paso! Cree una cuenta con sus datos personales</p>
-					<button class="ghost" id="signUp" (click)="signUp()">Sign Up</button>
+					<button class="ghost" id="signUp" (click)="signUpButton()">Sign Up</button>
 				</div>
 			</div>
 		</div>
 	</div>	
+	
 </div>
+<!-- <ul>
+	<li class="text" *ngFor="let item of items | async">
+	  {{item.name}}
+	</li>
+</ul> -->
