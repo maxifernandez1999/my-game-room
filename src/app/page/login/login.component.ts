@@ -15,11 +15,12 @@ export class LoginComponent implements OnInit {
   passwordSignIn:any = '';
   emailSignIn:any = '';
 
-  isRegister:boolean = false;
+  isRegisterSignUp:boolean = false;
+  isRegisterSignIn:boolean = false;
 
   nameSignUp:any;
-  emailSignUp:any;
-  passwordSignUp:any;
+  emailSignUp:any = "";
+  passwordSignUp:any = "";
 
   @ViewChild('asContainer') container:any;
   @ViewChild('asMessage') message:any;
@@ -49,17 +50,23 @@ export class LoginComponent implements OnInit {
     this.users.forEach(user => {
       if (user.email == this.emailSignIn
         && user.password == this.passwordSignIn) {
-          this.isRegister = true;
+          this.isRegisterSignIn = true;
       }
     });
   }
   existSignUp(){
-    this.users.forEach(user => {
-      if (user.email == this.emailSignUp
-        && user.password == this.passwordSignUp) {
-          this.isRegister = true;
-      }
-    });
+    if(this.nameSignUp != "" && this.emailSignUp != "" && this.passwordSignUp != ""){
+      this.users.forEach(user => {
+        if (user.email == this.emailSignUp
+          && user.password == this.passwordSignUp) {
+            this.isRegisterSignUp = true;
+        }
+      });
+    }else{
+      console.log('hola');
+      this.isRegisterSignUp = true;
+    }
+    
   }
   ShowSpinner(){
       const elementSpinner = this.spinner.nativeElement;
@@ -78,7 +85,7 @@ export class LoginComponent implements OnInit {
     this.renderer2.setProperty(elementMessage,'innerHTML',message);
   }
   showMessageExist(){
-    if (this.isRegister == true) {
+    if (this.isRegisterSignUp == true) {
       this.ShowSpinner();
       const elementMessage = this.message.nativeElement;
       this.createMessage('El usuario ya existe! Pruebe con iniciar sesion')
@@ -96,7 +103,7 @@ export class LoginComponent implements OnInit {
     }
   }
   showMessageNotRegister(){
-    if (this.isRegister == false) {
+    if (this.isRegisterSignIn == false) {
       this.ShowSpinner();
       const elementMessage = this.message.nativeElement;
       this.renderer2.addClass(elementMessage,"visible"); 
