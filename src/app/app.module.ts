@@ -12,7 +12,10 @@ import { LoginComponent } from './page/login/login.component';
 import { HomeComponent } from './page/home/home.component';
 import { QuienSoyComponent } from './page/quien-soy/quien-soy.component';
 import { ErrorComponent } from './components/error/error.component';
-import { MenuPrincipalComponent } from './components/menu-principal/menu-principal.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { InfoUserComponent } from './components/info-user/info-user.component';
+
 
 
 @NgModule({
@@ -22,7 +25,9 @@ import { MenuPrincipalComponent } from './components/menu-principal/menu-princip
     HomeComponent,
     QuienSoyComponent,
     ErrorComponent,
-    MenuPrincipalComponent
+    NavbarComponent,
+    FooterComponent,
+    InfoUserComponent
   ],
   imports: [
     BrowserModule,

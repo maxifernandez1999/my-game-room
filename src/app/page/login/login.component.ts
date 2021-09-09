@@ -63,7 +63,6 @@ export class LoginComponent implements OnInit {
         }
       });
     }else{
-      console.log('hola');
       this.isRegisterSignUp = true;
     }
     
@@ -88,7 +87,7 @@ export class LoginComponent implements OnInit {
     if (this.isRegisterSignUp == true) {
       this.ShowSpinner();
       const elementMessage = this.message.nativeElement;
-      this.createMessage('El usuario ya existe! Pruebe con iniciar sesion')
+      this.createMessage('El usuario ya existe! Pruebe con iniciar sesion');
       this.renderer2.addClass(elementMessage,"visible"); 
     }else{
       const date:Date = new Date();
@@ -105,6 +104,7 @@ export class LoginComponent implements OnInit {
   showMessageNotRegister(){
     if (this.isRegisterSignIn == false) {
       this.ShowSpinner();
+      this.createMessage('No pudimos encontrar su usuario. Intente de nuevo o registrese!');
       const elementMessage = this.message.nativeElement;
       this.renderer2.addClass(elementMessage,"visible"); 
     }else{
