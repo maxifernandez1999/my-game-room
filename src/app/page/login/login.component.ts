@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { UsersService } from 'src/app/services/users.service';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-login',
@@ -41,8 +41,21 @@ export class LoginComponent implements OnInit {
     });
     console.log(this.users);
    }
-
-  signIn(){
+  login(){
+    this.userService.login(this.emailSignIn,this.passwordSignIn).then(() =>{
+      UsersService.email = this.emailSignIn;
+      console.log("hola");
+      this.rutas.navigate(['home']);
+    }).catch(error =>{
+      this.ShowSpinner();
+      const elementMessage = this.message.nativeElement;
+      this.createMessage('No pudimos encontrar su usuario. Intente de nuevo o registrese!');
+      this.renderer2.addClass(elementMessage,"visible");
+    });
+    
+      
+  }
+  async signIn(){
     this.existSignIn();
     this.showMessageNotRegister();
   }
@@ -73,6 +86,21 @@ export class LoginComponent implements OnInit {
         this.renderer2.setStyle(elementSpinner,'display','none');
       }, 2000);
       this.renderer2.setStyle(elementSpinner,'display','block');    
+  }
+  register(){
+      this.userService.register(this.emailSignUp,this.passwordSignUp).then(user =>{
+        UsersService.email = this.emailSignUp;
+        console.log("hola");
+        this.rutas.navigate(['home']);
+      }).catch(error =>{
+        this.ShowSpinner();
+        const elementMessage = this.message.nativeElement;
+        this.createMessage('El usuario ya existe! Pruebe con iniciar sesion');
+        this.renderer2.addClass(elementMessage,"visible");
+      });
+      
+    
+    
   }
   signUp(){
     this.existSignUp();

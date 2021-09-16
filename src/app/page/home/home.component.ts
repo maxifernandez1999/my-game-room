@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  component:any = "<app-hangman-game></app-hangman-game>";
+  @ViewChild('games') game:any = "";
+  constructor(private renderer2:Renderer2) { }
 
   ngOnInit(): void {
+    let games:any = this.game.ElementRef;
+    let element:any = this.renderer2.createElement("app-hangman-game");
+    // this.renderer2.appendChild(games,element);
+    this.component = element;
   }
 
 }

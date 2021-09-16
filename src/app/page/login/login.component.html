@@ -18,7 +18,7 @@
 				<input [(ngModel)]="nameSignUp" name="name" type="text" placeholder="Nombre" />
 				<input [(ngModel)]="emailSignUp" name="email" type="email" placeholder="Email" />
 				<input [(ngModel)]="passwordSignUp" name="password" type="password" placeholder="Contraseña" />
-				<button (click)="signUp()">Sign Up</button>
+				<button (click)="register()">Sign Up</button>
 			</form>
 		</div>
 		<div class="form-container sign-in-container">
@@ -37,7 +37,7 @@
 				</div>
 				<a href="#">Olvidaste la contraseña?</a>
 				
-				<button (click)="signIn()">Sign In</button>
+				<button (click)="login()">Sign In</button>
 			</form>
 		</div>
 		<div class="overlay-container">
@@ -57,8 +57,4 @@
 	</div>	
 	
 </div>
-<!-- <ul>
-	<li class="text" *ngFor="let item of items | async">
-	  {{item.name}}
-	</li>
-</ul> -->
+
