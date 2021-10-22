@@ -3,14 +3,18 @@
       <div class="row" id="app">
           <div class="col-12 text-center">
               <h1 class="text-success">Ahorcado </h1>
-              <h3 class="displayed-word">Palabra: <br>{{sizeWord}}</h3>
-              <p class="h4 text-danger">Intentos: </p>
+                <div #asHangman class="col-12 text-center" >
+                    <h3 class="displayed-word">Palabra: 0</h3>
+                </div>
+              
+              <p #p class="h4 text-danger">Intentos: 0</p>
               <br>
               <img class="img-fluid" src="../../../assets/Ahorcado-0.png" alt="">
           </div>
           <div class="col-12 text-center" >
               <button  *ngFor="let letter of letters" (click)="letterPress($event,letter)" class="btn btn-success m-1 btn-lg">{{letter}}</button>
           </div>
+          <button (click)="init()">Iniciar</button>
           
       </div>
   </main>

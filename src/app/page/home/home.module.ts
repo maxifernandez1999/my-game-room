@@ -9,7 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { FormsModule } from '@angular/forms';
-import { AppModule } from 'src/app/app.module';
+import { MajorMinorComponent } from './components/major-minor/major-minor.component';
 
 
 
@@ -21,7 +21,8 @@ import { AppModule } from 'src/app/app.module';
     FooterComponent,
     HangmanGameComponent,
     InfoUserComponent,
-    NavbarComponent
+    NavbarComponent,
+    MajorMinorComponent
   ],
   imports: [
     CommonModule,

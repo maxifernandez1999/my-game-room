@@ -89,10 +89,12 @@ export class LoginComponent implements OnInit {
   }
   register(){
       this.userService.register(this.emailSignUp,this.passwordSignUp).then(user =>{
+        console.log(user);
         UsersService.email = this.emailSignUp;
         console.log("hola");
         this.rutas.navigate(['home']);
       }).catch(error =>{
+        console.log(error);
         this.ShowSpinner();
         const elementMessage = this.message.nativeElement;
         this.createMessage('El usuario ya existe! Pruebe con iniciar sesion');
@@ -101,6 +103,11 @@ export class LoginComponent implements OnInit {
       
     
     
+  }
+
+  accessFast():void{
+    this.emailSignIn = 'maxi@gmail.com';
+    this.passwordSignIn = '123456';
   }
   signUp(){
     this.existSignUp();

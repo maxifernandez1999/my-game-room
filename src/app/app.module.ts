@@ -8,14 +8,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './page/home/home.component';
 import { LoginComponent } from './page/login/login.component';
 import { QuienSoyComponent } from './page/quien-soy/quien-soy.component';
-
-
-
-
-
 
 @NgModule({
   declarations: [
