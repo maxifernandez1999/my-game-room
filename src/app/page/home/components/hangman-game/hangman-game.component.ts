@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-hangman-game',
   templateUrl: './hangman-game.component.html',
@@ -17,7 +17,7 @@ export class HangmanGameComponent implements OnInit {
 
   @ViewChild('asHangman') hangman:any = "";
   @ViewChild('p') p:any = "";
-  constructor(private renderer2:Renderer2) { 
+  constructor(private renderer2:Renderer2, private toastr: ToastrService) { 
   }
   ngOnInit(): void {
     
@@ -52,7 +52,8 @@ export class HangmanGameComponent implements OnInit {
     const el = this.p.nativeElement;
     this.renderer2.setProperty(el,'innerHTML',"Intentos: " + this.int.toString())
     if (this.win === this.maxwin) {
-      alert("Ha ganado en " + this.int + " intentos");   
+      // alert("Ha ganado en " + this.int + "intentos");
+      this.toastr.success('Hello world!', 'Toastr fun!');   
       window.location.reload();   
     }
   }

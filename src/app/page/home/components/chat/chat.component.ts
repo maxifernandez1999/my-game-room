@@ -52,7 +52,7 @@ export class ChatComponent implements OnInit {
                   ${time.getHours()}:
                   ${time.getMinutes()}:
                   ${time.getSeconds()}`,
-      name: (UsersService.email != null) ? UsersService.email : "usuario no registrado"
+      // name: (UsersService.email != null) ? UsersService.email : "usuario no registrado"
     });
     // this.ShowMessage(this.message);
   }

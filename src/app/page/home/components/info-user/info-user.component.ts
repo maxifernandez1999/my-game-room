@@ -12,8 +12,6 @@ export class InfoUserComponent implements OnInit {
   constructor(private usersService:UsersService) {}
   users:any[] = [];
   ngOnInit(): void {
-    this.emailUser = UsersService.email;
-    console.log(UsersService.email);
 
   }
   exists(){

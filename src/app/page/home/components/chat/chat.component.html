@@ -1,28 +1,28 @@
+<app-navbar></app-navbar>
+<!-- CHAT CONTAINER -->
+<div class="row p-3 h-100 bg-info">
 
-      <!-- CHAT CONTAINER -->
-      <div class="row p-3 h-100 bg-info">
-  
-        <div class="col-md-12">
-          <div class="card bg-dark text-white rounded-0">
-            <!-- CARD HEADER-->
-            <div class="card-header bg-primary text-white">
-              <h4>Let's Chat</h4>
-            </div>
-            
-            <!-- CARD BODY-->
-              <div #asChat id="chat" class="card-body chat"></div>
-           
-            <!-- CARD FOOTER -->
-            <form id="message-form" class="card-footer">
-              <div class="input-group">
-                <input [(ngModel)]="message" name="message"  type="text" id="message" class="form-control" />
-                  <button (click)=SendMessage() class="btn btn-warning rounded-0">
-                    <i class="fas fa-location-arrow"></i> Send
-                  </button>
-              </div>
-            </form>
-          </div>
-        </div>
+  <div class="col-md-12">
+    <div class="card bg-dark text-white rounded-0">
+      <!-- CARD HEADER-->
+      <div class="card-header bg-primary text-white">
+        <h4>Let's Chat</h4>
       </div>
-    
-    <script src="main.js"></script>
+
+      <!-- CARD BODY-->
+      <div #asChat id="chat" class="card-body chat"></div>
+
+      <!-- CARD FOOTER -->
+      <form id="message-form" class="card-footer">
+        <div class="input-group">
+          <input [(ngModel)]="message" name="message" type="text" id="message" class="form-control" />
+          <button (click)=SendMessage() class="btn btn-warning rounded-0">
+            <i class="fas fa-location-arrow"></i> Send
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>

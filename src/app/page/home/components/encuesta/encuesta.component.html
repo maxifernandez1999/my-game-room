@@ -1,0 +1,130 @@
+<app-navbar></app-navbar>
+<div class="container">
+      <main>
+            <div class="row g-5">
+                  <h4 class="mb-3 text-center">Encuesta</h4>
+                  <form [formGroup]="productsForm" class="needs-validation">
+                        <div class="row g-3">
+                              <div class="col-sm-6">
+                                    <label for="firstName" class="form-label">Nombre</label>
+                                    <input type="text" formControlName="name"
+                                          [ngClass]="{ 'is-invalid': form.name.touched && form.name.errors }"
+                                          class="form-control" placeholder="" value="" required>
+                                    <div *ngIf="form.name.touched && form.name.errors" class="invalid-feedback">
+                                          <div *ngIf="form.name.errors.required">Es requerido</div>
+                                          <div *ngIf="form.name.errors.minlenght">max 30 caracteres</div>
+                                    </div>
+                              </div>
+
+                              <div class="col-sm-6">
+                                    <label for="lastName" class="form-label">Apellido</label>
+                                    <input type="text" formControlName="lastName"
+                                          [ngClass]="{ 'is-invalid': form.lastName.touched && form.lastName.errors }"
+                                          class="form-control" id="lastName" placeholder="" value="" required>
+                                    <div *ngIf="form.lastName.touched && form.lastName.errors"
+                                          class="invalid-feedback">
+                                          <div *ngIf="form.lastName.errors.required">Es requerido</div>
+                                          <div *ngIf="form.lastName.errors.maxlenght">maximo 30 caracteres</div>
+                                    </div>
+                              </div>
+
+                              <div class="col-12">
+                                    <label for="email" class="form-label">Edad</label>
+                                    <input type="number" class="form-control"
+                                          formControlName="age" 
+                                          [ngClass]="{ 'is-invalid': form.age.touched && form.age.errors }"
+                                          placeholder="Age">
+                                    <div *ngIf="form.age.touched && form.age.errors" class="invalid-feedback">
+                                          <div *ngIf="form.age.errors.required">Es requerido</div>
+                                          <div *ngIf="form.age.errors.min">18+</div>
+                                          <div *ngIf="form.age.errors.max">Tiene que ser menor a 99</div>
+                                          <div *ngIf="form.age.errors.pattern">Solo valores numericos enteros</div>
+                                    </div>
+                              </div>
+                              <div class="col-12">
+                                    <label for="email" class="form-label">Telefono</label>
+                                    <input type="text" class="form-control"
+                                          formControlName="phone" 
+                                          [ngClass]="{ 'is-invalid': form.phone.touched && form.phone.errors }"
+                                          placeholder="Phone">
+                                    <div *ngIf="form.phone.touched && form.phone.errors" class="invalid-feedback">
+                                          <div *ngIf="form.phone.errors.required">Es requerido</div>
+                                          <div *ngIf="form.phone.errors.maxlenght">maximo 10 caracteres</div>
+                                          <div *ngIf="form.phone.errors.pattern">Solo valores numericos enteros</div>
+                                          
+                                    </div>
+                              </div>
+                              <div class="col-12">
+                                    <label for="email" class="form-label">Como conocio esta sala de juegos?</label>
+                                    <input type="text" class="form-control"
+                                          formControlName="question" 
+                                          [ngClass]="{ 'is-invalid': form.question.touched && form.question.errors }"
+                                          placeholder="Como conocio esta sala de juegos?">
+                                    <div *ngIf="form.question.touched && form.question.errors" class="invalid-feedback">
+                                          <div *ngIf="form.question.errors.required">Es requerido</div>
+                                          <div *ngIf="form.question.errors.maxlenght">maximo 100 caracteres</div>  
+                                    </div>
+                              </div>
+                              <hr class="my-4">
+                              <div class="col-12">
+                                    <h6>Puntaje de la sala de juegos</h6>
+                                    <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="exampleRadios"
+                                          (change)="getRadioButtonChecked('1')" id="exampleRadios1" value="Busqueda del tesoro" checked>
+                                          <label class="form-check-label" for="exampleRadios1">
+                                            1
+                                          </label>
+                                    </div>
+                                    <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="exampleRadios" 
+                                          (change)="getRadioButtonChecked('2')"  id="exampleRadios2" value="Ahorcado">
+                                          <label class="form-check-label" for="exampleRadios2">
+                                            2
+                                          </label>
+                                    </div>
+                                    <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="exampleRadios"
+                                          (change)="getRadioButtonChecked('3')"  id="exampleRadios3" value="Preguntados">
+                                          <label class="form-check-label" for="exampleRadios3">
+                                            3
+                                          </label>
+                                    </div>
+                                    <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="exampleRadios" 
+                                          (change)="getRadioButtonChecked('4')"  id="exampleRadios4" value="mayor-menor">
+                                          <label class="form-check-label" for="exampleRadios4">
+                                            4
+                                          </label>
+                                    </div>
+                                    <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="exampleRadios" 
+                                          (change)="getRadioButtonChecked('5')"  id="exampleRadios5" value="mayor-menor">
+                                          <label class="form-check-label" for="exampleRadios5">
+                                            5
+                                          </label>
+                                    </div>
+
+                              </div>
+                              <hr class="my-4">
+                              <div class="col-12">
+                                    <h6>Cual es su juego favorito?</h6>
+                                    <select class="form-control" id="select" formControlName="fav">
+                                          <option disabled selected>Cual es su juego favorito?</option>
+                                          <option value="Busqueda del Tesoro" >Busqueda del tesoro</option>
+                                          <option value="Ahorcado">Ahorcado</option>
+                                          <option value="Preguntados">Preguntados</option>
+                                          <option value="Mayor-Menor">Mayor-Menor</option>
+                                        </select>
+                                        
+                              </div>
+                        </div>
+                        <hr class="my-4">
+
+                        <button class="w-100 btn btn-primary btn-lg" type="submit" [disabled]="productsForm.invalid"
+                              (click)="addEncuesta()">Add</button>
+                  </form>
+            </div>
+
+      </main>
+      <app-footer></app-footer>
+</div>
