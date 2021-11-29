@@ -65,18 +65,18 @@ export class DataService {
  }
 
 
- GuardarEncuesta(mensaje:Encuesta){
+ GuardarEncuesta(encuesta:Encuesta){
    let fecha = new Date();
    return this.db.collection("encuestas").add({
-     'fecha': fecha.getDate() + '-' + (fecha.getMonth()+1) +  '-' +fecha.getFullYear(),
-     'mail':mensaje.email,
-     'nombre': mensaje.nombre,
-     'apellido':mensaje.apellido,
-     'telefono':mensaje.telefono,
-     'edad':mensaje.edad,
-     'comoNosConociste':mensaje.respuestaConocer,
-     'juegoPreferido':mensaje.respuestaJuego,
-     'puntuacion':mensaje.respuestaPuntuacion,
+      fecha: fecha.getDate() + '-' + (fecha.getMonth()+1) +  '-' +fecha.getFullYear(),
+      email :encuesta.email,
+      nombre: encuesta.nombre,
+      apellido:encuesta.apellido,
+      telefono:encuesta.telefono,
+      edad:encuesta.edad,
+      conocer:encuesta.conocer,
+      juegoFav:encuesta.juegoFav,
+      puntuacion:encuesta.puntuacion
    });
  } 
 }

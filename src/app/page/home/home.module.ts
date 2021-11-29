@@ -8,8 +8,11 @@ import { InfoUserComponent } from './components/info-user/info-user.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MajorMinorComponent } from './components/major-minor/major-minor.component';
+import { TreasureComponent } from './components/treasure/treasure.component';
+import { PreguntadosComponent } from './components/preguntados/preguntados.component';
+import { EncuestaComponent } from './components/encuesta/encuesta.component';
 
 
 
@@ -22,12 +25,19 @@ import { MajorMinorComponent } from './components/major-minor/major-minor.compon
     HangmanGameComponent,
     InfoUserComponent,
     NavbarComponent,
-    MajorMinorComponent
+    MajorMinorComponent,
+    TreasureComponent,
+    PreguntadosComponent,
+    EncuestaComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
+  ], 
+  exports: [
+    NavbarComponent
   ]
 })
 export class HomeModule { }

@@ -8,19 +8,15 @@ import { UsersService } from 'src/app/services/users/users.service';
 })
 export class InfoUserComponent implements OnInit {
   emailUser:string = "";
+  nameUser:string = "";
 
-  constructor(private usersService:UsersService) {}
-  users:any[] = [];
+  constructor() {}
   ngOnInit(): void {
-
+    this.getLocalStorageData();
   }
-  exists(){
-    this.usersService.getUsers().subscribe(users => {
-      users.forEach(user => {
-        this.users.push(user);
-      });
-    });
-    console.log(this.users);
+  getLocalStorageData():void{
+    this.nameUser = JSON.parse(localStorage.getItem('user')).name;
+    this.emailUser = JSON.parse(localStorage.getItem('user')).email;
   }
 
 }

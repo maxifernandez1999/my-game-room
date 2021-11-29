@@ -9,9 +9,8 @@ import { Observable } from 'rxjs';
 export class UsersService {
   users: Observable<any[]>;
   
-  public static email:string;
   constructor(private firestore: AngularFirestore, private auth:AngularFireAuth) { 
-    this.users = this.firestore.collection('items').valueChanges();
+    this.users = this.firestore.collection('users').valueChanges();
     this.auth.authState.subscribe(user => {
       console.log(user);
     });
@@ -33,7 +32,7 @@ export class UsersService {
     return this.auth.createUserWithEmailAndPassword(user,password);
     
   }
-  addUser(data:any){
-    this.firestore.collection('items').add(data);
+  public addUser(user:any):Promise<any>{
+    return this.firestore.collection('users').add({...user});
   }
 }

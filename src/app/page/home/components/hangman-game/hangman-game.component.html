@@ -14,7 +14,12 @@
           <div class="col-12 text-center" >
               <button  *ngFor="let letter of letters" (click)="letterPress($event,letter)" class="btn btn-success m-1 btn-lg">{{letter}}</button>
           </div>
-          <button (click)="init()">Iniciar</button>
+          <br>
+          <div class="col-12 text-center">
+            <button class="btn btn-info" (click)="init()">Iniciar</button>
+          </div>
+          
           
       </div>
+      
   </main>

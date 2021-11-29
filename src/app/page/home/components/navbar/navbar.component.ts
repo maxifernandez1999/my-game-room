@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {}
   logOut() {
     this.auth.logOut().then((log) => {
+      localStorage.clear();
       this.rutas.navigate(['login']);
     });
   }
@@ -37,6 +38,9 @@ export class NavbarComponent implements OnInit {
         break;
       case 'encuesta':
         this.rutas.navigate(['encuesta']);
+        break;
+      case 'quien':
+        this.rutas.navigate(['quien-soy']);
         break;
 
       default:
