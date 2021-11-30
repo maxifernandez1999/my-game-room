@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { ScoreService } from 'src/app/services/score/score.service';
 import { ToastrCustomService } from 'src/app/services/toastr/toastrCustom.service';
 
 @Component({
@@ -14,7 +16,9 @@ export class TreasureComponent implements OnInit, AfterViewInit {
   $distance:any;
   clicks:any;
   target:any;
-  constructor(private toastr: ToastrCustomService) {}
+  @ViewChild('buttonSave') buttonSave:ElementRef;
+  @ViewChild('buttonNew') buttonNew:ElementRef;
+  constructor(private toastr: ToastrCustomService, private toa: ToastrService, private scoreService:ScoreService, private renderer2:Renderer2) {}
 
   ngOnInit(): void {
     this.target = {
@@ -27,13 +31,23 @@ export class TreasureComponent implements OnInit, AfterViewInit {
     this.$map = document.querySelector('#map');
     this.$distance = document.querySelector('#distance');
     this.clicks = 0;
+      let el = this.buttonSave.nativeElement;
+      this.renderer2.addClass(el,"disabled");
+      let ele = this.buttonNew.nativeElement;
+      this.renderer2.addClass(ele,"disabled");
   }
   // generate a random Number
   public getRandomNumber(size: any) {
     return Math.floor(Math.random() * size);
   }
 // click handler
-
+  public save():void{
+    let data:any = JSON.parse(localStorage.getItem('user'));
+    this.scoreService.saveScore(data,this.clicks,"Treasure").then(()=>{
+      this.toa.success('Se ha guardado la partida', 'Save!');
+      window.location.reload();
+    })
+  }
   public game(e:any):void{
     console.log('click');
     this.clicks++;
@@ -43,11 +57,18 @@ export class TreasureComponent implements OnInit, AfterViewInit {
   
     if (distance < 20 ) {
       // alert(`Found the treasure in ${this.clicks} clicks!`);
+      let el = this.buttonSave.nativeElement;
+      this.renderer2.removeClass(el,"disabled");
+      let ele = this.buttonNew.nativeElement;
+      this.renderer2.removeClass(ele,"disabled");
       this.toastr.success(this.clicks).onHidden.subscribe(res => {
-        window.location.reload();
+        
       })
       
     }
+  }
+  public newGame():void{
+    window.location.reload();
   }
   // get the Distance of two points
   public getDistance(e: any, target: any) {
@@ -59,19 +80,19 @@ export class TreasureComponent implements OnInit, AfterViewInit {
   // return an String depending on the distances
   public getDistanceHint(distance: any) {
     if (distance < 30) {
-      return 'Boiling hot!';
+      return 'Super Caliente!';
     } else if (distance < 40) {
-      return 'Really Hot';
+      return 'Muy Caliente';
     } else if (distance < 60) {
-      return 'Hot';
+      return 'Caliente';
     } else if (distance < 100) {
-      return 'Warm';
+      return 'Tibio';
     } else if (distance < 180) {
-      return 'Cold';
+      return 'Frio';
     } else if (distance < 360) {
-      return 'Really Cold';
+      return 'Muy Frio';
     } else {
-      return 'Freezing!';
+      return 'Congelado!';
     }
   }
 }

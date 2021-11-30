@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="container">
+      <main>
+            <div class="row g-5">
+                  <h4 class="mb-3 text-center">Resultados</h4>
+                  <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Puntos</th>
+                            <th scope="col">Juego</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let score of scores">
+                          <tr>
+                            <td>{{score.name}}</td>
+                            <td>{{score.email}}</td>
+                            <td>{{score.date}}</td>
+                            <td>{{score.score}}</td>
+                            <td>{{score.game}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+            </div>
+
+      </main>
+      <app-footer></app-footer>
+</div>

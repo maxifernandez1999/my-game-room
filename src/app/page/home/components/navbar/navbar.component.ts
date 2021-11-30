@@ -19,7 +19,8 @@ export class NavbarComponent implements OnInit {
   }
   public redirect(el: string): void {
     switch (el) {
-      case 'jugadores':
+      case 'resultados':
+        this.rutas.navigate(['resultados'])
         break;
       case 'hangman':
         this.rutas.navigate(['hangman']);

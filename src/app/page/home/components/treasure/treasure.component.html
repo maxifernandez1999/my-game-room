@@ -1,7 +1,12 @@
 <app-navbar></app-navbar>
 <div class="container1">
-      <h1>Find The Treasure</h1>
+      <h1>Encuentra el tesoro</h1>
       <img (click)="game($event)" src="../../../../../assets/treasuremap.png" width="400" height="400" id="map" draggable="false" >
 
       <p id="distance"></p>
+
+      <br>
+      <button #buttonSave class="btn btn-warning" (click)="save()">Save</button>
+      <br>
+      <button #buttonNew class="btn btn-info" (click)="newGame()">Nueva Partida</button>
 </div>

@@ -1,5 +1,6 @@
-import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { ScoreService } from 'src/app/services/score/score.service';
 @Component({
   selector: 'app-hangman-game',
   templateUrl: './hangman-game.component.html',
@@ -9,6 +10,7 @@ export class HangmanGameComponent implements OnInit {
   int:number = 0;
   win:number = 0;
   maxwin:number = 0;
+  score:number;
   word:string = "";
   sizeWord:string = "_ _ _ _ _ _ _";
   arrayWord:string[] = [];
@@ -16,22 +18,32 @@ export class HangmanGameComponent implements OnInit {
                       "N","M","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 
   @ViewChild('asHangman') hangman:any = "";
+  @ViewChild('buttonSave') buttonSave:ElementRef;
   @ViewChild('p') p:any = "";
-  constructor(private renderer2:Renderer2, private toastr: ToastrService) { 
+  constructor(private renderer2:Renderer2, private toastr: ToastrService, private scoreService:ScoreService) { 
   }
   ngOnInit(): void {
     
     
   }
+  ngAfterViewInit():void{
+    let el = this.buttonSave.nativeElement;
+    this.renderer2.addClass(el,"disabled");
+  }
   init(){
     this.arrayWord = [
-      "PERO",
-      "GATO",
       "MONTA",
       "CALMO",
-      "HOLA"
+      "ABETO",
+      "ACERO",
+      "ACIJE",
+      "ACOTE"
+
     ]
     this.generateWord();
+  }
+  public reset():void{
+    window.location.reload();
   }
   getLetterPressIndex(letter:string){
     return this.word.indexOf(letter);
@@ -43,23 +55,28 @@ export class HangmanGameComponent implements OnInit {
     if (this.getLetterPressIndex(letter) != -1) {
       this.renderer2.addClass(buttonLetterElement,"disabled");
       this.setLetters(letter);
-      this.win++;
+      if (this.win > this.maxwin) {
+        this.win++;
+      }
+      
     }else{
       this.renderer2.addClass(buttonLetterElement,"btn-danger");
       this.renderer2.addClass(buttonLetterElement,"disabled");
     }
     this.int++;
+    this.score = this.int;
     const el = this.p.nativeElement;
     this.renderer2.setProperty(el,'innerHTML',"Intentos: " + this.int.toString())
     if (this.win === this.maxwin) {
-      // alert("Ha ganado en " + this.int + "intentos");
-      this.toastr.success('Hello world!', 'Toastr fun!');   
-      window.location.reload();   
+      this.score = this.int;
+      let el = this.buttonSave.nativeElement;
+      this.renderer2.removeClass(el,"disabled");
+      this.toastr.success('Ganaste!', 'Felicidades!');  
     }
   }
   generateWord(){
     
-    this.word = this.arrayWord[this.randomWord(1,4)];
+    this.word = this.arrayWord[this.randomWord(1,5)];
     console.log(this.word);
     var elementWord = this.hangman.nativeElement;
     switch (this.word.length) {
@@ -80,6 +97,15 @@ export class HangmanGameComponent implements OnInit {
         console.log("default")
         break;
     }
+  }
+  public save():void{
+    let data:any = JSON.parse(localStorage.getItem('user'));
+    console.log(data.email);
+    console.log(data.name);
+    console.log(this.score);
+    this.scoreService.saveScore(data,this.score,"Ahorcado").then(()=>{
+      this.toastr.success('Se ha guardado la partida', 'Save!');
+    })
   }
 
   CreateWord(size:number):string{
@@ -103,7 +129,8 @@ export class HangmanGameComponent implements OnInit {
   }
   
   randomWord(min:number,max:number){
-    return Math.floor(Math.random() * (max - min) + min);
+    console.log(Math.round(Math.random() * (max - min) + min))
+    return Math.round(Math.random() * (max - min) + min);
   }
 
 

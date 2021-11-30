@@ -1,5 +1,11 @@
 <app-navbar></app-navbar>
   <main class="container-fluid">
+    <div class="col-12 m-3">
+            <button #buttonSave class="btn btn-warning" (click)="save()">Guardar Resultado Obtenido</button>
+          </div>
+          <div class="col-12 m-3">
+            <button #buttonSave class="btn btn-danger" (click)="reset()">Reiniciar</button>
+          </div>
       <div class="row" id="app">
           <div class="col-12 text-center">
               <h1 class="text-success">Ahorcado </h1>
