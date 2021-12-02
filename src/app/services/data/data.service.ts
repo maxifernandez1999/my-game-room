@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 import { Encuesta } from 'src/app/models/encuesta';
 
 @Injectable({
@@ -60,8 +61,8 @@ export class DataService {
    return turnosUfs;  // this.db.collection(juego,ref=>ref.orderBy('puntuacion','desc'));
  }
 
- getEncuestas() {
-   return this.db.collection("encuestas").valueChanges();
+ getEncuestas(): Observable<Encuesta[]> {
+   return this.db.collection("encuestas").valueChanges() as Observable<Encuesta[]>;
  }
 
 

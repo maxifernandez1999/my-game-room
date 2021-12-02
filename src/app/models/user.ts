@@ -3,6 +3,7 @@ export class User {
       email:string = '';
       password:string = '';
       fechaIngreso:string = '';
+      perfil:string = '';
       
 
 }

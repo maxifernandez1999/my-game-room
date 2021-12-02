@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/services/data/data.service';
+import { ScoreService } from 'src/app/services/score/score.service';
 
 @Component({
   selector: 'app-major-minor',
@@ -21,7 +22,7 @@ export class MajorMinorComponent implements OnInit {
   cartas:any;
 
   constructor(private toastr: ToastrService/* , private authService: AuthService */,
-    private dataService: DataService,private fire:AngularFireAuth, private http: HttpClient) { }
+    private dataService: DataService,private fire:AngularFireAuth, private http: HttpClient, private scoreService:ScoreService) { }
 
   ngOnInit(): void {
     // this.getCurrentUser();
@@ -113,19 +114,26 @@ export class MajorMinorComponent implements OnInit {
     this.toastr.error("¿¿Tan rápido te rendís??", "Me decepcionás");
   }
 
-  guardar(){
-    this.user.puntajes[1]['mayorMenosJugados'] += 1;
+  // guardar(){
+  //   this.user.puntajes[1]['mayorMenosJugados'] += 1;
     
-    console.info(this.user);
-    console.info(this.user.puntajes[1]['mayorMenosJugados']);
-    this.dataService.savePuntaje('mayormenor', this.user, this.contadorPuntos)
-      .then(() => {
-        this.toastr.success("Puntos guardados")
-      })
-      .catch(err => {
-        this.toastr.error("Al guardar: " + err.message, "Error");
-      })
-      this.save=false;
+  //   console.info(this.user);
+  //   console.info(this.user.puntajes[1]['mayorMenosJugados']);
+  //   this.dataService.savePuntaje('mayormenor', this.user, this.contadorPuntos)
+  //     .then(() => {
+  //       this.toastr.success("Puntos guardados")
+  //     })
+  //     .catch(err => {
+  //       this.toastr.error("Al guardar: " + err.message, "Error");
+  //     })
+  //     this.save=false;
+  // }
+  guardar():void{
+    let data:any = JSON.parse(localStorage.getItem('user'));
+    this.scoreService.saveScore(data,this.contadorPuntos,"MayorMenor").then(()=>{
+      this.toastr.success('Puntos guardados');
+    })
+    this.save = false;
   }
 
   // getCurrentUser() {

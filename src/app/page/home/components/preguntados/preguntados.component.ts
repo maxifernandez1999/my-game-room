@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
 import { DataService } from 'src/app/services/data/data.service';
+import { ScoreService } from 'src/app/services/score/score.service';
 
 @Component({
   selector: 'app-preguntados',
@@ -28,7 +29,8 @@ export class PreguntadosComponent implements OnInit {
     /* private authService: AuthService, */
     private dataService: DataService,
     private fire: AngularFireAuth,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private scoreService: ScoreService
   ) {}
 
   ngOnInit(): void {
@@ -75,28 +77,35 @@ export class PreguntadosComponent implements OnInit {
     this.save = true;
     this.enJuego = false;
     this.juegoOff = !this.enJuego;
-    this.toastr.error('Alpiste..', '¡Perdiste!');
+    this.toastr.error('Intentalo de nuevo', '¡Perdiste!');
   }
 
   finalizar() {
     this.contadorPuntos = 0;
     this.enJuego = false;
     this.juegoOff = !this.enJuego;
-    this.toastr.error('¿¿Tan rápido te rendís??', 'Me decepcionás');
+    this.toastr.error('Seguro?', ':(');
   }
 
-  guardar() {
-    this.user.puntajes[0]['ahorcadoJugados'] += 1;
-    console.info(this.user);
-    console.info(this.user.puntajes[0]['preguntadosJugados']);
-    this.dataService
-      .savePuntaje('preguntados', this.user, this.contadorPuntos)
-      .then(() => {
-        this.toastr.success('Puntos guardados');
-      })
-      .catch((err) => {
-        this.toastr.error('Al guardar: ' + err.message, 'Error');
-      });
+  // guardar() {
+  //   this.user.puntajes[0]['ahorcadoJugados'] += 1;
+  //   console.info(this.user);
+  //   console.info(this.user.puntajes[0]['preguntadosJugados']);
+  //   this.dataService
+  //     .savePuntaje('preguntados', this.user, this.contadorPuntos)
+  //     .then(() => {
+  //       this.toastr.success('Puntos guardados');
+  //     })
+  //     .catch((err) => {
+  //       this.toastr.error('Al guardar: ' + err.message, 'Error');
+  //     });
+  //   this.save = false;
+  // }
+  guardar():void{
+    let data:any = JSON.parse(localStorage.getItem('user'));
+    this.scoreService.saveScore(data,this.contadorPuntos,"Preguntados").then(()=>{
+      this.toastr.success('Puntos guardados');
+    })
     this.save = false;
   }
 

@@ -55,15 +55,21 @@ export class HangmanGameComponent implements OnInit {
     if (this.getLetterPressIndex(letter) != -1) {
       this.renderer2.addClass(buttonLetterElement,"disabled");
       this.setLetters(letter);
-      if (this.win > this.maxwin) {
         this.win++;
-      }
+        console.log(this.win);
       
     }else{
       this.renderer2.addClass(buttonLetterElement,"btn-danger");
       this.renderer2.addClass(buttonLetterElement,"disabled");
     }
     this.int++;
+    if(this.int >= 10){
+      this.toastr.error('Perdiste!', 'Solo tiene 10 intentos');
+      setTimeout(()=>{
+        window.location.reload();
+      },1000);
+      
+    }
     this.score = this.int;
     const el = this.p.nativeElement;
     this.renderer2.setProperty(el,'innerHTML',"Intentos: " + this.int.toString())

@@ -70,7 +70,7 @@
                 <li>
                   <a (click)="redirect('resultados')"  class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#gamers"/></svg>
-                    Resultados
+                    Resultados de juegos
                   </a>
                 </li>
                 <li>
@@ -110,6 +110,13 @@
                   <a (click)="redirect('encuesta')" class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#encuesta"/></svg>
                     Encuesta
+                  </a>
+                </li>
+                <li *ngIf="isAdmin === 'administrador'">
+                  <!-- href="" -->
+                  <a (click)="redirect('result')" class="nav-link text-white">
+                    <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#encuesta"/></svg>
+                    Resultados de Encuestas
                   </a>
                 </li>
                 <li>

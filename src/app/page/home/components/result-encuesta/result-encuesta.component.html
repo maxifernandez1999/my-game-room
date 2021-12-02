@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+<div class="container">
+      <main>
+            <div class="row g-5">
+                  <h4 class="mb-3 text-center">Resultados</h4>
+                  <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Edad</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Juego Favorito</th>
+                            <th scope="col">Como nos conociste</th>
+                            <th scope="col">Puntuacion</th>
+                            <th scope="col">Fecha</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let encuesta of encuestas">
+                          <tr>
+                            <td>{{encuesta.nombre}}</td>
+                            <td>{{encuesta.apellido}}</td>
+                            <td>{{encuesta.edad}}</td>
+                            <td>{{encuesta.telefono}}</td>
+                            <td>{{encuesta.juegoFav}}</td>
+                            <td>{{encuesta.conocer}}</td>
+                            <td>{{encuesta.puntuacion}}</td>
+                            <td>{{encuesta.fecha}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+            </div>
+
+      </main>
+      <app-footer></app-footer>
+</div>

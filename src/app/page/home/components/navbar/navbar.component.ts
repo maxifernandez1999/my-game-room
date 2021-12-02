@@ -8,9 +8,12 @@ import { UsersService } from 'src/app/services/users/users.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  isAdmin:string;
   constructor(private rutas: Router, private auth: UsersService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isAdmin = JSON.parse(localStorage.getItem('user')).perfil;
+  }
   logOut() {
     this.auth.logOut().then((log) => {
       localStorage.clear();
@@ -42,6 +45,9 @@ export class NavbarComponent implements OnInit {
         break;
       case 'quien':
         this.rutas.navigate(['quien-soy']);
+        break;
+        case 'result':
+        this.rutas.navigate(['result']);
         break;
 
       default:

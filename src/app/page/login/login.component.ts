@@ -16,6 +16,7 @@ import { UsersService } from 'src/app/services/users/users.service';
 })
 export class LoginComponent implements OnInit {
   users: User[] = [];
+  currentUser:User;
   nameUser:string;
   passwordSignIn: any = '';
   emailSignIn: any = '';
@@ -56,7 +57,8 @@ export class LoginComponent implements OnInit {
         let user: any = {
           email: this.emailSignIn,
           password: this.passwordSignIn,
-          name: this.nameUser
+          name: this.nameUser,
+          perfil: this.currentUser.perfil
         };
         localStorage.setItem('user', JSON.stringify(user));
         this.rutas.navigate(['home']);
@@ -82,6 +84,7 @@ export class LoginComponent implements OnInit {
       ) {
         this.isRegisterSignIn = true;
         this.nameUser = user.name;
+        this.currentUser = user;
       }
     });
   }
@@ -120,7 +123,7 @@ export class LoginComponent implements OnInit {
           name: this.nameSignUp,
           password: this.passwordSignUp,
           email: this.emailSignUp,
-          fechaIngreso: dateFormat,
+          fechaIngreso: dateFormat
         };
         this.userService.addUser(user).then(() => {
           localStorage.setItem('user', JSON.stringify(user));

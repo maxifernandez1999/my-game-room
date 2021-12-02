@@ -13,6 +13,8 @@ import { MajorMinorComponent } from './components/major-minor/major-minor.compon
 import { TreasureComponent } from './components/treasure/treasure.component';
 import { PreguntadosComponent } from './components/preguntados/preguntados.component';
 import { EncuestaComponent } from './components/encuesta/encuesta.component';
+import { ResultadosComponent } from './components/resultados/resultados.component';
+import { ResultEncuestaComponent } from './components/result-encuesta/result-encuesta.component';
 
 
 
@@ -28,7 +30,9 @@ import { EncuestaComponent } from './components/encuesta/encuesta.component';
     MajorMinorComponent,
     TreasureComponent,
     PreguntadosComponent,
-    EncuestaComponent
+    EncuestaComponent,
+    ResultadosComponent,
+    ResultEncuestaComponent
   ],
   imports: [
     CommonModule,

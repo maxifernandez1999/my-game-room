@@ -22,7 +22,6 @@ export class EncuestaComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    // console.log(this.productsForm.controls.code.errors)
   }
   initForm() {
     this.productsForm = this.fb.group({
